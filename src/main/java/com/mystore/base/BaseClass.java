@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -51,6 +52,9 @@ public class BaseClass {
 		} else if (browserName.equalsIgnoreCase("IE")) {
 			WebDriverManager.iedriver().setup();
 			driver.set(new InternetExplorerDriver());
+		} else if (browserName.equalsIgnoreCase("Edge")) {
+			WebDriverManager.edgedriver().setup();
+			driver.set(new EdgeDriver());
 		}
 		//Maximize the screen
 		getDriver().manage().window().maximize();
