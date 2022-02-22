@@ -24,9 +24,22 @@ public class Action extends BaseClass implements ActionInterface {
 		act.moveToElement(ele).click().build().perform();
 	}
 
-	public boolean isDisplayed(WebDriver ldriver, WebElement ele) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isDisplayed(WebElement ele) {
+		boolean flag = false;
+		flag = findElement(ele);
+		if (flag) {
+			flag = ele.isDisplayed();
+			if (flag) {
+				System.out.println("The element is Displayed");
+			} else {
+				System.out.println("The element is not Displayed");
+			}
+		} else {
+			System.out.println("Not displayed");
+		}
+		return flag;
+		
+//		return ele.isDisplayed();
 	}
 
 	public boolean type(WebElement ele, String text) {
@@ -34,9 +47,23 @@ public class Action extends BaseClass implements ActionInterface {
 		return false;
 	}
 
-	public boolean findElement(WebDriver ldriver, WebElement ele) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean findElement(WebElement ele) {
+		boolean flag = false;
+		try {
+			ele.isDisplayed();
+			flag = true;
+		} catch (Exception e) {
+			// System.out.println("Location not found: "+locatorName);
+			flag = false;
+		} finally {
+			if (flag) {
+				System.out.println("Successfully Found element on page");
+
+			} else {
+				System.out.println("Unable to locate element on page");
+			}
+		}
+		return flag;
 	}
 
 	public boolean isSelected(WebDriver ldriver, WebElement ele) {
@@ -197,8 +224,8 @@ public class Action extends BaseClass implements ActionInterface {
 	        	    .pollingEvery(Duration.ofSeconds(2))
 	        	    .ignoring(Exception.class);
 	        wait.until(ExpectedConditions.visibilityOf(element));
-	        element.click();
-	    }catch(Exception e) {
+	        //element.click();
+	    } catch(Exception e) {
 	    }
 	}
 

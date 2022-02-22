@@ -6,13 +6,16 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.WebDriver;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+
+import com.mystore.utility.ExtentManager;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -20,8 +23,11 @@ public class BaseClass {
 	public static Properties prop;
 	public static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<RemoteWebDriver>();
 	
-	@BeforeSuite(groups = { "Smoke", "Sanity", "Regression" })
-	public void loadConfig() {
+	@BeforeSuite
+	public void loadConfig() throws IOException {
+		ExtentManager.setExtent();
+		DOMConfigurator.configure("log4j.xml");
+		
 		try {
 			prop = new Properties();
 			FileInputStream ip = new FileInputStream(
@@ -35,7 +41,7 @@ public class BaseClass {
 		}
 	}
 	
-	public static WebDriver getDriver() {
+	public static RemoteWebDriver getDriver() {
 		// Get Driver from threadLocalmap
 		return driver.get();
 	}
@@ -68,5 +74,10 @@ public class BaseClass {
 		(Integer.parseInt(prop.getProperty("pageLoadTimeOut")),TimeUnit.SECONDS);
 		//Launching the URL
 		getDriver().get(prop.getProperty("url"));
+	}
+	
+	@AfterSuite
+	public void afterSuite() {
+		ExtentManager.endReport();
 	}
 }

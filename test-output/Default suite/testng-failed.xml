@@ -6,8 +6,7 @@
       <class name="com.mystore.testcases.IndexPageTest">
         <methods>
           <include name="setup"/>
-          <include name="tearDown"/>
-          <include name="verifyTitle"/>
+          <include name="verifyLogo"/>
           <include name="loadConfig"/>
         </methods>
       </class> <!-- com.mystore.testcases.IndexPageTest -->
