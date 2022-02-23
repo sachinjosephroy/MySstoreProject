@@ -78,6 +78,6 @@ public class BaseClass {
 	
 	@AfterSuite
 	public void afterSuite() {
-		ExtentManager.endReport();
+		//ExtentManager.endReport();
 	}
 }

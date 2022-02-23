@@ -11,9 +11,8 @@
         <methods>
           <include name="tearDown"/>
           <include name="setup"/>
-          <include name="verifyLogo"/>
           <include name="loadConfig"/>
-          <include name="verifyTitle"/>
+          <include name="afterSuite"/>
           <include name="clickSignInBtn"/>
         </methods>
       </class> <!-- com.mystore.testcases.IndexPageTest -->
