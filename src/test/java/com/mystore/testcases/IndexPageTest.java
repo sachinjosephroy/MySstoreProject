@@ -45,6 +45,6 @@ public class IndexPageTest extends BaseClass {
 	public void clickSignInBtn() {
 		Log.startTestCase("clickSignInBtn");
 		pom.getIndexPage().clickOnSignIn();
-		Assert.assertEquals(pom.getLoginPage().getLoginPageTitle(), "Login - My Store");
+		Assert.assertEquals(pom.getLoginPage().getLoginPageTitle(), "Login - My Stores");
 	}
 }
