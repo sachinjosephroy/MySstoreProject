@@ -71,10 +71,6 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>${xmlFiles}</suiteXmlFile>
 					</suiteXmlFiles>
-					<systemPropertyVariables>
-						<executionBrowser>${browser}</executionBrowser>
-						<appURl>${url}</appURl>
-					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>
